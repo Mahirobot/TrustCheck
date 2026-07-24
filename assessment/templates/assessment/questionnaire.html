@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Assessment</title></head>
+<body style="font-family: sans-serif; max-width: 720px; margin: 40px auto;">
+  <h1>Trustworthy AI Self-Assessment</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label>Organisation name:
+      <input type="text" name="organisation" required>
+    </label>
+    {% for q in questions %}
+      <fieldset style="margin: 18px 0;">
+        <legend><strong>{{ q.principle.name }}</strong></legend>
+        <p>{{ q.text }}</p>
+        {% for c in q.choices.all %}
+          <label style="display:block;">
+            <input type="radio" name="question_{{ q.id }}" value="{{ c.id }}" required>
+            {{ c.label }}
+          </label>
+        {% endfor %}
+      </fieldset>
+    {% endfor %}
+    <button type="submit" style="padding: 10px 18px;">Submit</button>
+  </form>
+</body>
+</html>

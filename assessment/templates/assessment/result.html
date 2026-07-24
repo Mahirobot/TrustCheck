@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Results</title></head>
+<body style="font-family: sans-serif; max-width: 720px; margin: 40px auto;">
+  <h1>Results – {{ assessment.organisation }}</h1>
+  <h2>Overall maturity: {{ overall }}%</h2>
+  <table border="1" cellpadding="8" style="border-collapse: collapse; width:100%;">
+    <tr><th>Principle</th><th>Score</th><th>Band</th></tr>
+    {% for r in results %}
+      <tr>
+        <td>{{ r.principle }}</td>
+        <td>{{ r.pct }}%</td>
+        <td>{{ r.band }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <p><a href="{% url 'assessment:questionnaire' %}">Run another assessment</a></p>
+</body>
+</html>
